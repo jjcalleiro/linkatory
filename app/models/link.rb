@@ -5,7 +5,7 @@ class Link < ActiveRecord::Base
   
   # link validations
   # TODO: Add validation for URL format
-  validates_presence_of :link, :on => :create, :message => "must have a valid url"
+  validates_presence_of :location, :on => :create, :message => "must have a valid url"
   
   # title validations
   validates_presence_of :title, :message => "Just put something in the title"
