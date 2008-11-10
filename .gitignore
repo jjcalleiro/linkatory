@@ -1,4 +1,5 @@
 log/*.log
+config/environment.rb
 tmp/**/*
 .DS_Store
 doc/api
