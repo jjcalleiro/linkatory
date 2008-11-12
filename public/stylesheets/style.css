@@ -1,0 +1,33 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font: 12px/1.33em Helvetica, Arial, Verdana, sans-serif; 
+}
+
+a:link, a:visited {
+	color: black;
+	text-decoration: none;
+}
+
+#header {
+	background-color: #333;
+	color: white;
+	margin-bottom: 20px;
+	padding: 20px 0 20px 20px;
+}
+
+#mainMenu {
+	color: grey;
+	position: relative;
+	float: right;
+	top: -15px;
+}
+
+#mainMenu li {
+	display: inline;
+	padding: 7px 10px;
+	background-color: white;
+}
