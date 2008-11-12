@@ -1,47 +1,72 @@
-class LinksController < ApplicationController    
- # GET - displays all links    
- def index      
-   @links = Link.find :all, :order => 'created_at ASC'    
- end    
- 
- # GET - shows one link (based on the supplied id)    
- def show      
-   @link = Link.find(params[:id])    
- end    
- 
- # GET - displays a form which can be used to create a link
- def new  
-   @link = Link.new    
- end    
- 
- # link - create a new link    
- def create      
-   @link = Link.new(params[:link])      
-   @link.save!      
-   redirect_to link_path(@link)    
-   rescue ActiveRecord::RecordInvalid      
-   render :action => 'new'    
- end    
- 
- # GET - displays a form allowing us to edit an existing link
- def edit
-   @link = Link.find(params[:id])
- end    
- 
- # PUT - update an existing link    
- def update      
-   @link = Link.find(params[:id])      
-   @link.attributes = params[:link]      
-   @link.save!      
-   redirect_to link_path(@link)    
-   rescue ActiveRecord::RecordInvalid      
-   render :action => 'edit'    
- end    
- 
- # DELETE - delete a link    
- def destroy      
-   @link  = Link.find(params[:id])      
-   @link.destroy      
-   redirect_to links_path    
- end  
+class LinksController < ApplicationController
+  def index
+    @links = Link.find :all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @links }
+    end
+  end
+
+  def show
+    @link = Link.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @link }
+    end
+  end
+
+  def new
+    @link = Link.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @link }
+    end
+  end
+
+  def edit
+    @link = Link.find(params[:id])
+  end
+
+  def create
+    @link = Link.new(params[:link])
+
+    respond_to do |format|
+      if @link.save
+        flash[:notice] = 'Link was successfully created.'
+        format.html { redirect_to(@link) }
+        format.xml  { render :xml => @link, :status => :created, :location => @link }
+      else
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @link.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  def update
+    @link = Link.find(params[:id])
+
+    respond_to do |format|
+      if @link.update_attributes(params[:link])
+        flash[:notice] = 'Link was successfully updated.'
+        format.html { redirect_to(@link) }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @link.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  def destroy
+    @link = Link.find(params[:id])
+    @link.destroy
+
+    respond_to do |format|
+      format.html { redirect_to(admin_links_url) }
+      format.xml  { head :ok }
+    end
+  end
 end

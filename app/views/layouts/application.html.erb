@@ -29,7 +29,10 @@
     <% if not current_page?(:controller => "links", :action => "index") -%>
       <p><%= link_to "Back to links", links_path %></p>
     <% end -%>
-
-
+    
+    <% if ENV["RAILS_ENV"] == "development" %>
+      <%= debug(params) %>
+    <% end %>
+  </div>
 </body>
 </html>
