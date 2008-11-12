@@ -1,10 +1,4 @@
 <%= error_messages_for('link') %>  
-
-<% form_tag links_path do -%>    
-<%= render :partial => 'links/form' %>    
-
-<fieldset>      
-  <button type="submit">Save</button>      
-  <%= link_to 'Cancel', links_path %>    
-</fieldset>  
-<% end -%>  
+<% form_for @link do |f| -%>
+  <%= render :partial => 'links/form', :locals => { :f => f } %>
+<% end -%>
