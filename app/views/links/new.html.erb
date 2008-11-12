@@ -1,4 +1,10 @@
+<% # Variable to hold the legend title to use in the form partial (see form_legend helper) %>
+<% title 'Add a new link' %>
+<% form_legend "Add New Link" %>
+
+<% # Display error messages for link if unsuccessful %>
 <%= error_messages_for('link') %>  
+
 <% form_for @link do |f| -%>
   <%= render :partial => 'links/form', :locals => { :f => f } %>
   <%= submit_tag "Post New Article" -%>

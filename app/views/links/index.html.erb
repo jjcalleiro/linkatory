@@ -4,7 +4,10 @@
 <% else -%>
   <ul>
   <% @links.each do |link| -%>
-    <li><%= link_to h(link.title), link_path(link) %></li>
+    <li>
+      <%= link_to h(link.title), link_path(link) %> - 
+      <%= link_to 'Edit', edit_link_path(link), :class => 'editLink' %>
+    </li>
   <% end -%>
   </ul>
 <% end -%>

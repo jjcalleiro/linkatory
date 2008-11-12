@@ -4,16 +4,23 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <title>Linkatory - <%= yield(:title) || "Deciding the fate of your links" %></title>
-
+  <%= stylesheet_link_tag 'style' %>
 </head>
 
 <body>
   <div id="wrapper">
+    <div id="header">
+      <ul id="mainMenu">
+        <li><%= link_to_unless_current 'My Linkatory', links_path %></li>
+        <li><%= link_to_unless 'Add a link', new_link_path %></li>
+      </ul>
+      <h1><%= yield :title %></h1>
+      
+    </div>
     
-    <%= link_to 'Add a link', new_link_path %>
-    <hr />
-    <h1>Linkatory</h1>
-    <h2><%= yield :title %></h2>
+    
+    
+    <h2></h2>
 
     <% # Flash notice to show all notifications %>
     <% if flash[:notice] -%>
@@ -25,10 +32,6 @@
     <!-- Render page content -->
     <%= yield %>
     
-    <% # Show back to links page if not index %>
-    <% if not current_page?(:controller => "links", :action => "index") -%>
-      <p><%= link_to "Back to links", links_path %></p>
-    <% end -%>
     
     <% if ENV["RAILS_ENV"] == "development" %>
       <%= debug(params) %>

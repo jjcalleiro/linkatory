@@ -1,2 +1,7 @@
-<%= f.text_field  :title %>
-<%= f.text_field  :location %>
+<fieldset>
+  <legend><%= @legend %></legend>
+  <%= f.label :title, 'Title' %>
+  <%= f.text_field  :title %>
+  <%= f.label :location, 'Location' %>
+  <%= f.text_field  :location %>
+</fieldset>
